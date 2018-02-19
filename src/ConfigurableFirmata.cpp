@@ -17,12 +17,18 @@
 //******************************************************************************
 
 #include "ConfigurableFirmata.h"
+#if !defined(WIN32)
 #include "HardwareSerial.h"
+#endif
 
 extern "C" {
 #include <string.h>
 #include <stdlib.h>
 }
+
+#if defined(WIN32)
+#define B01111111 (127)
+#endif
 
 //******************************************************************************
 //* Support Functions
@@ -202,7 +208,7 @@ void FirmataClass::setFirmwareNameAndVersion(const char *name, byte major, byte 
   }
 
   if (!extension) {
-    firmwareVersionCount = strlen(firmwareName) + 2;
+    firmwareVersionCount = (byte)strlen(firmwareName) + 2;
   } else {
     firmwareVersionCount = extension - firmwareName + 2;
   }
@@ -478,7 +484,7 @@ void FirmataClass::sendSysex(byte command, byte bytec, byte *bytev)
  */
 void FirmataClass::sendString(byte command, const char *string)
 {
-  sendSysex(command, strlen(string), (byte *)string);
+  sendSysex(command, (byte)strlen(string), (byte *)string);
 }
 
 /**

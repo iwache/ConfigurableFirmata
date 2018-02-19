@@ -1,0 +1,12 @@
+// Additional includes for the Visual C++ compiler
+#include "ConfigurableFirmata.cpp"
+#include "Encoder7Bit.cpp"
+#include "DigitalInputFirmata.cpp"
+#include "DigitalOutputFirmata.cpp"
+#include "AnalogInputFirmata.cpp"
+#include "FirmataEncoder.cpp"
+#include "FirmataSSD1306.cpp"
+#include "SSD1306Spi.cpp"
+#include "FirmataReporting.cpp"
+#include "FirmataExt.cpp"
+#include "AnalogFirmata.cpp"

@@ -116,6 +116,7 @@
 #define PIN_MODE_IGNORE         0x7F // pin configured to be ignored by digitalWrite and capabilityResponse
 #define TOTAL_PIN_MODES         13
 // DEPRECATED as of Firmata v2.5
+#if !defined(WIN32)
 #define ANALOG                  0x02 // same as PIN_MODE_ANALOG
 #define PWM                     0x03 // same as PIN_MODE_PWM
 #define SERVO                   0x04 // same as PIN_MODE_SERVO
@@ -125,6 +126,7 @@
 #define STEPPER                 0x08 // same as PIN_MODE_STEPPER
 #define ENCODER                 0x09 // same as PIN_MODE_ENCODER
 #define IGNORE                  0x7F // same as PIN_MODE_IGNORE
+#endif
 
 extern "C" {
   // callback function types
@@ -237,5 +239,9 @@ extern FirmataClass Firmata;
  * firmware source file rather than the library source file.
  */
 #define setFirmwareVersion(x, y)   setFirmwareNameAndVersion(__FILE__, x, y)
+
+#if defined(WIN32)
+#include "Win32Includes.cpp"
+#endif
 
 #endif /* Configurable_Firmata_h */
